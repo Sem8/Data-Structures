@@ -58,6 +58,15 @@ class LinkedList:
       else:
         self.head = self.head.next_node
 
+    def len(self):
+        count = 0
+        current = self.head
+
+        while current:
+            count += 1
+            current = current.next_node
+        return count
+
 
 # Setting up a LinkedList for testing
 ll = LinkedList()
@@ -67,8 +76,10 @@ ll.add_to_tail(4)
 ll.add_to_tail(5)
 ll.add_to_tail(6)
 
+print(ll.len())     # should return 5
 print(ll.head.value)    # should return 1
 print(ll.head.next_node.next_node.value)    # should return 4
 ll.dequeue()    # will remove 1 from head
 ll.dequeue()    # will remove 2 from new head
 print(ll.head.value)    # As new head, should return 4 
+print(ll.len())     # should return 3
