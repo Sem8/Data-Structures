@@ -30,10 +30,15 @@ class TextBuffer:
             self.contents.add_to_head(a_letter)        
 
     def delete_front(self, chars_to_remove):
-        pass
+        for i in range(chars_to_remove):
+            self.contents.remove_from_head()
+        
+        
 
     def delete_back(self, chars_to_remove):
-        pass
+        for i in range(chars_to_remove):
+            self.contents.remove_from_tail()    
+        
 
     """
     Join other_buffer to self
@@ -42,18 +47,25 @@ class TextBuffer:
     The head of the concatenated buffer will be the head of this buffer 
     """
     def join(self, other_buffer):
+        self.contents.tail.next = other_buffer.contents.head
+        other_buffer.contents.head.prev = self.contents.tail
+        other_buffer.contents.head = self.contents.head
+        self.contents.tail = other_buffer.contents.tail
         # we might want to check that other_buffer is indeed a text buffer 
-        # set self list tail's next node to be the head of the other buffer 
-        
+        # set self list tail's next node to be the head of the other buffer        
         # set other_buffer head's prev node to be the tail of this buffer
         
-        pass
+        
         
     # if we get fed a string instead of a text buffer instance,
     # initialize a new text buffer with this string and then 
     # call the join method 
     def join_string(self, string_to_join):
-        pass
+        new_text = TextBuffer(string_to_join)
+        self.contents.tail.next = new_text.contents.head
+        new_text.contents.head.prev = self.contents.tail
+        new_text.contents.head = self.contents.head
+        self.contents.tail = new_text.contents.tail
 
 if __name__ == '__main__':
     text = TextBuffer("Super")
