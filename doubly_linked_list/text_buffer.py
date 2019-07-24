@@ -71,8 +71,8 @@ if __name__ == '__main__':
     text = TextBuffer("Super")
     print(text)
 
-    text.join_string("califragilisticexpealidocious")
-    print(text)
+    # text.join_string("califragilisticexpealidocious")
+    # print(text)
 
     text.append(" is ")
     text.join(TextBuffer("weird."))
