@@ -8,7 +8,8 @@ class TextBuffer:
         # check if an init string is provided
         # if so, put the contents of the init string in self.contents
         if init:
-            pass
+            for char in init:
+                self.contents.add_to_tail(char)
 
     def __str__(self):
         # needs to return a string to print 
@@ -47,14 +48,27 @@ class TextBuffer:
     The head of the concatenated buffer will be the head of this buffer 
     """
     def join(self, other_buffer):
-        self.contents.tail.next = other_buffer.contents.head
-        other_buffer.contents.head.prev = self.contents.tail
-        other_buffer.contents.head = self.contents.head
-        self.contents.tail = other_buffer.contents.tail
+        # self.contents.tail.next = other_buffer.contents.head
+        # other_buffer.contents.head.prev = self.contents.tail
+        # other_buffer.contents.head = self.contents.head
+        # self.contents.tail = other_buffer.contents.tail
+
+        if(other_buffer.contents.length == 0):
+            print('ERROR: Other buffer is empty')
+            return
+        if isinstance(other_buffer, TextBuffer):
+            self.contents.tail.next = other_buffer.contents.head
+            other_buffer.contents.head.prev = self.contents.tail
+            self.contents.tail = other_buffer.contents.tail
+            self.contents.length += other_buffer.contents.length
+            
+        else:
+            print('ERROR: Argument is not a text buffer')
+            return
+
         # we might want to check that other_buffer is indeed a text buffer 
         # set self list tail's next node to be the head of the other buffer        
-        # set other_buffer head's prev node to be the tail of this buffer
-        
+        # set other_buffer head's prev node to be the tail of this buffer        
         
         
     # if we get fed a string instead of a text buffer instance,
@@ -62,17 +76,15 @@ class TextBuffer:
     # call the join method 
     def join_string(self, string_to_join):
         new_text = TextBuffer(string_to_join)
-        self.contents.tail.next = new_text.contents.head
-        new_text.contents.head.prev = self.contents.tail
-        new_text.contents.head = self.contents.head
-        self.contents.tail = new_text.contents.tail
+        self.join(new_text)
+
 
 if __name__ == '__main__':
     text = TextBuffer("Super")
     print(text)
 
-    # text.join_string("califragilisticexpealidocious")
-    # print(text)
+    text.join_string("califragilisticexpealidocious")
+    print(text)
 
     text.append(" is ")
     text.join(TextBuffer("weird."))
