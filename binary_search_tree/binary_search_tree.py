@@ -47,23 +47,21 @@ class BinarySearchTree:
   def get_max(self):
     max_value = self.value
 
-    if self.right:      
+    if self.right:
+      # return self.right.get_max()      
       max_value = self.right.get_max()
-          
+
     return max_value
-
-
-  # def get_max(self):
-  #   max_value = self.value
-  #   if not self.right:
-  #     if self.left:
-  #       self.left.get_max()
-  #       max_value = self.left.value
-  #   elif self.right:
-  #     self.right.get_max()
-  #     max_value = self.right.value
-  #   return max_value
     
 
   def for_each(self, cb):
-    pass
+    if self.value != None:
+      cb(self.value)
+      if self.left:
+        self.left.for_each(cb)
+      if self.right:
+        self.right.for_each(cb)
+
+
+    
+    
