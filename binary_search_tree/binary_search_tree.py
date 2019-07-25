@@ -53,8 +53,10 @@ class BinarySearchTree:
 
     return max_value
     
-
-  def for_each(self, cb):
+# I did a pre-order traversal I believe
+# post order traversal would just invoke cb(self.value) all the way at the bottom
+# inorder traversal would invoke cb(self.value) between left and right if statements
+  def for_each(self, cb):    
     if self.value != None:
       cb(self.value)
       if self.left:
