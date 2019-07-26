@@ -3,10 +3,13 @@ Answer the following questions for each of the data structures you implemented a
 ## Queue
 
 1. What is the runtime complexity of `enqueue`?
+1an. O(n)? but append for double ended queue says O(1)
 
 2. What is the runtime complexity of `dequeue`?
+2an. O(n)? but pop for double ended queue says O(1)
 
 3. What is the runtime complexity of `len`?
+3an. O(1)?
 
 ## Binary Search Tree
 
